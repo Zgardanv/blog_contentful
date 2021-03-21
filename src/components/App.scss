@@ -1,0 +1,33 @@
+.header_space{
+    height: 100px;
+}
+
+.App{
+    background-color: #f5f5f5;
+}
+.spinner{
+    padding: 20px 0;
+    height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .spinner-border{
+        width: 10em;
+        height: 10em;
+    }
+}
+.input{
+    height: 35px;
+    border-radius: 4px;
+    line-height: inherit !important;
+    background-color: #fff;
+    margin: 0 5px;
+    padding: 0 5px;
+}
+
+.posts{
+    padding: 30px 0;
+    .post{
+        padding-bottom: 30px;
+    }
+}
