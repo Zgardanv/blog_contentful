@@ -3,6 +3,7 @@ import axios from 'axios';
 import { InputBase, Button, Container, Box } from '@material-ui/core';
 import WeatherContent from './WeatherContent';
 import Spinner from './Spinner';
+import WeatherFiveDays from './WeatherFiveDays';
 
 
 const About = () => {
@@ -10,6 +11,7 @@ const About = () => {
     const [input, setInput] = useState('Chisinau');
     const [changeOn, setChangeOn] = useState('');
     const [response, setResponse] = useState(null)
+    const [fiveDays, setfiveDays] = useState(null)
 
 
 
@@ -18,13 +20,18 @@ const About = () => {
         setChangeOn(input);
     }
 
+    const params = {
+        q: input,
+        appid: process.env.REACT_APP_WETHER_KEY,
+        units: 'metric',
+        lang: 'en'
+    }
+
+
     useEffect(() => {
-        axios.get('http://api.openweathermap.org/data/2.5/weather', {
+        axios.get('https://api.openweathermap.org/data/2.5/weather', {
             params: {
-                q: input,
-                appid: process.env.REACT_APP_WETHER_KEY,
-                units: 'metric',
-                lang: 'en'
+                ...params
             }
         })
             .then(function (response) {
@@ -33,15 +40,23 @@ const About = () => {
             .catch(function (error) {
                 console.log(error);
             })
-            .then(function () {
-                // always executed
-            });
+
+        axios.get('https://api.openweathermap.org/data/2.5/forecast', {
+            params: {
+                ...params,
+                cnt: 35
+            }
+        }).then((response) => {
+            setfiveDays(response)
+        }).catch((err) => {
+            console.log(err)
+        })
 
     }, [changeOn])
 
     if (!response) {
         return (
-            <Spinner/>
+            <Spinner />
         )
     }
 
@@ -53,6 +68,7 @@ const About = () => {
                 <Button className='input' variant='contained' disableElevation size="large" color='primary' onClick={handleInputClick} >click</Button>
             </Box>
             <WeatherContent response={response.data} />
+            <WeatherFiveDays list={fiveDays?.data} />
         </Container>
     );
 }

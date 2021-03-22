@@ -1,40 +1,19 @@
 import React from 'react';
 import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper, Typography, Grid, Box } from '@material-ui/core';
+import WindFormater from './WindFormater';
 
 const WeatherContent = ({ response }) => {
-    let formatedWind = response.wind.deg;
-    switch (true) {
-        case (10 < formatedWind && formatedWind < 80):
-            formatedWind = 'NE';
-            break;
-        case (80 <= formatedWind && formatedWind <= 100):
-            formatedWind = 'E';
-            break;
-        case (100 < formatedWind && formatedWind < 170):
-            formatedWind = 'ES';
-            break;
-        case (170 <= formatedWind && formatedWind <= 190):
-            formatedWind = 'E';
-            break;
-        case (190 < formatedWind && formatedWind < 260):
-            formatedWind = 'SW';
-            break;
-        case (260 <= formatedWind && formatedWind <= 350):
-            formatedWind = 'W';
-            break;
-        default: formatedWind = 'NW';
-            break;
-    }
 
+    
     return (
         <Box className='weatherContent' py={5}>
             <Grid container justify="center"  >
-                <Grid xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
                     <Box py={4}>
                         <Typography align="center" variant='h2' >{response.name} </Typography>
                     </Box>
                 </Grid>
-                <Grid xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
 
                     <Box py={4}>
                         <Typography align="center" variant='h2'  >{Math.round(response.main.temp)}&#8451; </Typography>
@@ -87,7 +66,7 @@ const WeatherContent = ({ response }) => {
                             </TableCell>
                             <TableCell>
                                 <Typography variant='subtitle1'> Speed: {response.wind.speed} meter/sec<br /></Typography>
-                                <Typography variant='subtitle1'> Direction: {formatedWind}<br /></Typography>
+                                <Typography variant='subtitle1'> Direction: {WindFormater(response.wind.deg)}<br /></Typography>
                             </TableCell>
                         </TableRow>
                     </TableBody>

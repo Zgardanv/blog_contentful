@@ -38,7 +38,7 @@ export default function Header() {
           <Typography component={Link} to='/weather' variant="h6" className={classes.title}>
             Weather
           </Typography>
-          <Button color="inherit" preventD >Login</Button>
+          <Button color="inherit"  >Login</Button>
         </Toolbar>
       </AppBar>
     </div>
