@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const WeatherFiveDays = ({list}) => {
-    console.log(list)
     const classes = useStyles();
 
     const dateConv = (date) => {

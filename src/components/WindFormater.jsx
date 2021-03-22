@@ -1,4 +1,3 @@
-import React from 'react';
 
 const WindFormater = (formatedWind) => {
     switch (true) {
@@ -17,10 +16,10 @@ const WindFormater = (formatedWind) => {
         case (190 < formatedWind && formatedWind < 260):
             formatedWind = 'SWest';
             break;
-        case (260 <= formatedWind && formatedWind <= 350):
+        case (260 <= formatedWind && formatedWind <= 280):
             formatedWind = 'West';
             break;
-        case (260 <= formatedWind && formatedWind <= 350):
+        case (280 < formatedWind && formatedWind < 350):
             formatedWind = 'NWest';
             break;
         default: formatedWind = 'North';
