@@ -1,14 +1,14 @@
-import React from 'react'
-import Posts from './Posts'
+import Posts from "./Posts";
+import { Grid } from "@material-ui/core";
 
 const Home = ({ posts }) => {
-    return (
-        <div>
-            <main className='container'>
-                <Posts posts={posts} />
-            </main>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Grid className="container">
+        <Posts posts={posts} />
+      </Grid>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
